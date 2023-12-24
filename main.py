@@ -12,16 +12,13 @@ if a+b > c and a+c > b and b+c > a:
     radA = acos(cosA)
     radB = acos(cosB)
     radC = acos(cosC)
-    degA = float(radA*180/pi)
-    degB = float(radB*180/pi)
-    degC = float(radC*180/pi)
     
     print('C = %f.' % float(2*p))
     print('S = %f.\n' % sqrt(p*(p-a)*(p-b)*(p-c)))
 
-    print('∠A = %f°.' % degA)
-    print('∠B = %f°.' % degB)
-    print('∠C = %f°.\n' % degC)
+    print('∠A = %f°.' % float(radA*180/pi))
+    print('∠B = %f°.' % float(radB*180/pi))
+    print('∠C = %f°.\n' % float(radC*180/pi))
 
     print('sinA = %f.' % sin(radA))
     print('sinB = %f.' % sin(radB))
