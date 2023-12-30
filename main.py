@@ -1,8 +1,10 @@
 from math import pi, sqrt, sin, cos, tan, acos
-from ttkbootstrap import Window, IntVar
-from ttkbootstrap import Radiobutton, Label, Entry, Button
 from tkinter.messagebox import showinfo, showerror
 
+from ttkbootstrap import Radiobutton, Label, Entry, Button
+from ttkbootstrap import Window, IntVar
+
+# Do some initializations.
 r = Window()
 r.title("Triangles")
 r.resizable(False, False)
@@ -22,12 +24,17 @@ iv = IntVar()
 
 
 def sas():
+    # The change of the user interface after pressing the radiobutton "SAS"
+
+    # Labels
     al.grid(row=0, column=2)
     bl.grid(row=1, column=2)
     Cl.grid(row=2, column=2)
     Al.grid_forget()
     Bl.grid_forget()
     cl.grid_forget()
+
+    # Entries
     ae.grid(row=0, column=3)
     be.grid(row=1, column=3)
     Ce.grid(row=2, column=3)
@@ -37,12 +44,17 @@ def sas():
 
 
 def sss():
+    # The change of the user interface after pressing the radiobutton "SSS"
+
+    # Labels
     al.grid(row=0, column=2)
     bl.grid(row=1, column=2)
     cl.grid(row=2, column=2)
     Al.grid_forget()
     Bl.grid_forget()
     Cl.grid_forget()
+
+    # Entries
     ae.grid(column=3)
     be.grid(row=1, column=3)
     ce.grid(row=2, column=3)
@@ -51,16 +63,16 @@ def sss():
     Ce.grid_forget()
 
 
-sas()
+sas()  # The default option is "SAS".
 Radiobutton(r, text="SAS", variable=iv, value=0, command=sas).grid(row=0, column=0)
 Radiobutton(r, text="SSS", variable=iv, value=1, command=sss).grid(row=1, column=0)
 
 
 def p():
     try:
-        if iv.get() == 0:
+        if iv.get() == 0:  # When choosing option "SAS"...
             C = float(Ce.get())
-            if C < 180:
+            if C < 180:  # The angle of a triangle is never bigger than 180°.
                 a = float(ae.get())
                 b = float(be.get())
                 radC = C * pi / 180
@@ -85,16 +97,16 @@ cosB = %f.
 cosC = %f.
 tanA = %f.
 tanB = %f.
-tanC = %f."""
-                         % (sqrt(halfC*(halfC-a)*(halfC-b)*(halfC-c)), 2 * halfC, c, radA/pi*180, radB/pi*180,
-                            sin(radA), sin(radB), sin(radC), cosA, cosB, cosC, tan(radA), tan(radB), tan(radC)))
+tanC = %f.""" % (sqrt(halfC * (halfC - a) * (halfC - b) * (halfC - c)), 2 * halfC, c, radA / pi * 180,
+                 radB / pi * 180,
+                 sin(radA), sin(radB), sin(radC), cosA, cosB, cosC, tan(radA), tan(radB), tan(radC)))
             else:
                 showerror("Error", "This is not a triangle.")
-        else:
+        else:  # When choosing option "SSS"...
             a = float(ae.get())
             b = float(be.get())
             c = float(ce.get())
-            if a + b > c and a + c > b and b + c > a:
+            if a + b > c and a + c > b and b + c > a:  # Check whether it is a triangle.
                 halfC = (a + b + c) / 2
                 cosA = (b * b + c * c - a * a) / (2 * b * c)
                 cosB = (a * a + c * c - b * b) / (2 * a * c)
@@ -116,12 +128,13 @@ cosB = %f.
 cosC = %f.
 tanA = %f.
 tanB = %f.
-tanC = %f.""" % (sqrt(halfC * (halfC-a)*(halfC-b)*(halfC-c)), 2*halfC, radA/pi*180, radB/pi*180, radC/pi*180,
+tanC = %f.""" % (sqrt(halfC * (halfC - a) * (halfC - b) * (halfC - c)), 2 * halfC, radA / pi * 180, radB / pi * 180,
+                 radC / pi * 180,
                  sin(radA), sin(radB), sin(radC), cosA, cosB, cosC, tan(radA), tan(radB), tan(radC)))
             else:
                 showerror("Error", "This is not a triangle.")
     except ValueError:
-        showerror("Error", "Invalid value.")
+        showerror("Error", "Invalid value.")  # When some unexpected things happened...
 
 
 Button(r, text="Process", command=p).grid(row=2, column=0)
