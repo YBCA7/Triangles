@@ -83,9 +83,12 @@ def p():
                 radA = acos(cosA)
                 radB = acos(cosB)
                 halfC = (a + b + c) / 2
+                S = sqrt(halfC * (halfC - a) * (halfC - b) * (halfC - c))
+                Ci = 2 * halfC
                 showinfo("Information",
                          """S = %f.
 C = %f.
+Ir = %f.
 c = %f.
 ∠A = %f°.
 ∠B = %f°.
@@ -97,7 +100,7 @@ cosB = %f.
 cosC = %f.
 tanA = %f.
 tanB = %f.
-tanC = %f.""" % (sqrt(halfC * (halfC - a) * (halfC - b) * (halfC - c)), 2 * halfC, c, radA / pi * 180,
+tanC = %f.""" % (S, Ci, 2 * S / Ci, c, radA / pi * 180,
                  radB / pi * 180,
                  sin(radA), sin(radB), sin(radC), cosA, cosB, cosC, tan(radA), tan(radB), tan(radC)))
             else:
@@ -108,6 +111,8 @@ tanC = %f.""" % (sqrt(halfC * (halfC - a) * (halfC - b) * (halfC - c)), 2 * half
             c = float(ce.get())
             if a + b > c and a + c > b and b + c > a:  # Check whether it is a triangle.
                 halfC = (a + b + c) / 2
+                S = sqrt(halfC * (halfC - a) * (halfC - b) * (halfC - c))
+                Ci = 2 * halfC
                 cosA = (b * b + c * c - a * a) / (2 * b * c)
                 cosB = (a * a + c * c - b * b) / (2 * a * c)
                 cosC = (a * a + b * b - c * c) / (2 * a * b)
@@ -117,6 +122,7 @@ tanC = %f.""" % (sqrt(halfC * (halfC - a) * (halfC - b) * (halfC - c)), 2 * half
                 showinfo("Information",
                          """S = %f.
 C = %f.
+Ir = %f.
 ∠A = %f°.
 ∠B = %f°.
 ∠C = %f°.
@@ -128,7 +134,7 @@ cosB = %f.
 cosC = %f.
 tanA = %f.
 tanB = %f.
-tanC = %f.""" % (sqrt(halfC * (halfC - a) * (halfC - b) * (halfC - c)), 2 * halfC, radA / pi * 180, radB / pi * 180,
+tanC = %f.""" % (S, Ci, 2 * S / Ci, radA / pi * 180, radB / pi * 180,
                  radC / pi * 180,
                  sin(radA), sin(radB), sin(radC), cosA, cosB, cosC, tan(radA), tan(radB), tan(radC)))
             else:
